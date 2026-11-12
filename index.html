@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ナッツ | YouTubeシミュレーター</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="ナッツ ホーム">
+          <span class="brand-mark">N</span>
+          <span>ナッツ</span>
+        </a>
+        <div class="topbar-actions">
+          <label class="profile-picker">
+            <span>チャンネル</span>
+            <select id="profileSelect" aria-label="チャンネルを切り替え"></select>
+          </label>
+          <button class="button button-ghost" id="newChannelButton">＋ 新しいチャンネル</button>
+        </div>
+      </header>
+
+      <main class="main-content">
+        <section class="hero">
+          <div>
+            <p class="eyebrow">YOUTUBE SIMULATOR</p>
+            <h1 id="channelHeading">あなたのチャンネルを育てよう。</h1>
+            <p class="hero-copy">動画を企画して投稿。あなたの選択が、チャンネルの成長を変えていきます。</p>
+          </div>
+          <div class="hero-badge"><span class="live-dot"></span> データは自動保存中</div>
+        </section>
+
+        <section class="stats-grid" aria-label="チャンネル統計">
+          <article class="stat-card">
+            <div class="stat-icon views-icon">▶</div>
+            <div><p>総再生数</p><strong id="totalViews">0</strong><span>回</span></div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-icon subscribers-icon">◎</div>
+            <div><p>登録者数</p><strong id="subscribers">0</strong><span>人</span></div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-icon videos-icon">▣</div>
+            <div><p>投稿動画</p><strong id="videoCount">0</strong><span>本</span></div>
+          </article>
+        </section>
+
+        <div class="content-grid">
+          <section class="panel composer-panel">
+            <div class="panel-heading">
+              <div><p class="eyebrow">CREATE VIDEO</p><h2>新しい動画を投稿</h2></div>
+              <span class="step-label">STEP 01</span>
+            </div>
+            <form id="videoForm">
+              <label class="field-label" for="videoTitle">動画の名前 <span>20文字以内</span></label>
+              <input id="videoTitle" maxlength="20" required placeholder="例：初心者向けギター講座" />
+              <div class="input-meta"><span id="titleCounter">0 / 20</span></div>
+
+              <label class="field-label" for="genre">ジャンル</label>
+              <select id="genre" required>
+                <option value="" disabled selected>ジャンルを選択してください</option>
+                <option>音楽</option><option>ゲーム</option><option>料理</option><option>紹介</option>
+                <option>乗り物</option><option>絵</option><option>教育</option><option>旅行</option>
+                <option>解説</option><option>その他</option>
+              </select>
+
+              <div class="performance-header">
+                <div><label class="field-label">動画の性能</label><p>合計100%になるように配分してください</p></div>
+                <strong id="performanceTotal">100%</strong>
+              </div>
+              <div class="range-list">
+                <label class="range-row">
+                  <span><i class="range-dot quality"></i>画質</span><output id="qualityValue">34%</output>
+                  <input id="quality" type="range" min="0" max="100" value="34" />
+                </label>
+                <label class="range-row">
+                  <span><i class="range-dot sound"></i>音</span><output id="soundValue">33%</output>
+                  <input id="sound" type="range" min="0" max="100" value="33" />
+                </label>
+                <label class="range-row">
+                  <span><i class="range-dot originality"></i>独創性</span><output id="originalityValue">33%</output>
+                  <input id="originality" type="range" min="0" max="100" value="33" />
+                </label>
+              </div>
+              <p class="form-error" id="formError" role="alert"></p>
+              <button class="button button-primary submit-button" type="submit">投稿する <span>→</span></button>
+            </form>
+          </section>
+
+          <section class="panel videos-panel">
+            <div class="panel-heading">
+              <div><p class="eyebrow">YOUR CONTENT</p><h2>投稿した動画</h2></div>
+              <span class="video-count-label" id="videoCountLabel">0本</span>
+            </div>
+            <div class="video-list" id="videoList">
+              <div class="empty-state"><div class="empty-icon">✦</div><h3>最初の動画を投稿しよう</h3><p>左のフォームから動画を投稿すると、ここに結果が表示されます。</p></div>
+            </div>
+          </section>
+        </div>
+      </main>
+      <footer><span>ナッツ</span> YouTubeシミュレーター <span class="footer-dot">•</span> ブラウザにデータを保存しています</footer>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
