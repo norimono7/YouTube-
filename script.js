@@ -61,7 +61,7 @@ function formatNumber(number) {
 function updatePerformance() {
   const values = sliders.map((slider) => Number(slider.value));
   const total = values.reduce((sum, value) => sum + value, 0);
-  document.querySelector("#performanceTotal").textContent = `${total}%`;
+  document.querySelector("#performanceTotal").textContent = `${total}% / 300%`;
   document.querySelector("#performanceTotal").style.color = "var(--purple)";
   values.forEach((value, index) => {
     document.querySelector(`#${["quality", "sound", "originality"][index]}Value`).textContent = `${value}%`;
@@ -99,6 +99,10 @@ function render() {
 
 titleInput.addEventListener("input", () => { titleCounter.textContent = `${titleInput.value.length} / 20`; });
 sliders.forEach((slider) => slider.addEventListener("input", updatePerformance));
+document.querySelector("#maxPerformanceButton").addEventListener("click", () => {
+  sliders.forEach((slider) => { slider.value = 100; });
+  updatePerformance();
+});
 document.querySelector("#newChannelButton").addEventListener("click", createChannel);
 profileSelect.addEventListener("change", (event) => { activeChannel = event.target.value; render(); });
 form.addEventListener("submit", (event) => {
