@@ -62,7 +62,7 @@ function updatePerformance() {
   const values = sliders.map((slider) => Number(slider.value));
   const total = values.reduce((sum, value) => sum + value, 0);
   document.querySelector("#performanceTotal").textContent = `${total}%`;
-  document.querySelector("#performanceTotal").style.color = total === 100 ? "var(--purple)" : "#df5071";
+  document.querySelector("#performanceTotal").style.color = "var(--purple)";
   values.forEach((value, index) => {
     document.querySelector(`#${["quality", "sound", "originality"][index]}Value`).textContent = `${value}%`;
   });
@@ -107,7 +107,6 @@ form.addEventListener("submit", (event) => {
   const genre = document.querySelector("#genre").value;
   const performanceValues = sliders.map((slider) => Number(slider.value));
   if (!title || title.length > 20 || !genre) { formError.textContent = "動画名とジャンルを入力してください。"; return; }
-  if (performanceValues.reduce((sum, value) => sum + value, 0) !== 100) { formError.textContent = "性能の合計を100%にしてください。"; return; }
   const performance = { quality: performanceValues[0], sound: performanceValues[1], originality: performanceValues[2] };
   const result = calculateResult(genre, performance);
   const channel = profiles[activeChannel];
@@ -116,7 +115,7 @@ form.addEventListener("submit", (event) => {
   channel.subscribers += result.subscribers;
   saveProfiles();
   form.reset();
-  sliders[0].value = 34; sliders[1].value = 33; sliders[2].value = 33;
+  sliders[0].value = 100; sliders[1].value = 100; sliders[2].value = 100;
   titleCounter.textContent = "0 / 20"; formError.textContent = "";
   updatePerformance(); render();
 });
